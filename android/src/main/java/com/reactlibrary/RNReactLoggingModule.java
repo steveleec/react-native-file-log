@@ -2,7 +2,6 @@
 package com.reactlibrary;
 
 import android.util.Log;
-import android.os.Environment;
 
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -29,7 +28,7 @@ public class RNReactLoggingModule extends ReactContextBaseJavaModule {
     private String tag = "RNReactLogging";
     private boolean consoleLog = true;
     private boolean fileLog = false;
-    private long maxFileSize = 512 * 1024; // 512 kb
+    private double maxFileSize = 512 * 1024; // 512 kb
 
     public RNReactLoggingModule(ReactApplicationContext reactContext) {
         super(reactContext);
@@ -64,10 +63,8 @@ public class RNReactLoggingModule extends ReactContextBaseJavaModule {
         }
     }
 
-
     void writeLogToFile(String content) {
-         File logFolder = new File(this.reactContext.getFilesDir().getAbsolutePath() + "/rn-loggings");
-
+        File logFolder = new File(this.reactContext.getFilesDir().getAbsolutePath() + "/rn-loggings");
         if (!logFolder.exists() && !logFolder.mkdir()) {
             return;
         }
@@ -138,7 +135,7 @@ public class RNReactLoggingModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void setMaxFileSize(long maxFileSize) {
+    public void setMaxFileSize(double maxFileSize) {
         this.maxFileSize = maxFileSize;
     }
 
