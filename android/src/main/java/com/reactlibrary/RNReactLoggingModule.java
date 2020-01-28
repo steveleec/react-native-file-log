@@ -66,18 +66,7 @@ public class RNReactLoggingModule extends ReactContextBaseJavaModule {
 
 
     void writeLogToFile(String content) {
-        File logDirectory = new File( Environment.getExternalStorageDirectory() + "/AeffeCQ" );
-        File logFolder = new File(logDirectory + "/log");
-
-        // create app folder
-        if ( !logDirectory.exists() ) {
-            logDirectory.mkdir();
-        }
-
-        // create log folder
-        if ( !logFolder.exists() ) {
-            logFolder.mkdir();
-        }
+         File logFolder = new File(this.reactContext.getFilesDir().getAbsolutePath() + "/rn-loggings");
 
         if (!logFolder.exists() && !logFolder.mkdir()) {
             return;
